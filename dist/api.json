@@ -24,9 +24,9 @@
     "description": "Genera un perfil longitudinal",
     "text": "A partir de un eje dibujado, el plugin muestra un perfil longitudinal del terreno",
     "version": "1.0.0",
-    "date": "Enero, 2020",
+    "date": "Junio, 2020",
     "author": "",
-    "org": "Instituto de Estadística y Cartografía de la Junta de Andalucía",
+    "org": "Consejería de Hacienda, Industria y Energía. Junta de Andalucía.",
     "tags": "mapea,plugin",
     "icon": "./facade/assets/icons/icons.svg",
     "centralized": true
