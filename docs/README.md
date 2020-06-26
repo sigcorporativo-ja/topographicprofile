@@ -19,9 +19,11 @@ Plugin que permite realizar un perfil longitudinal en función del eje que dibuj
 
 El constructor se inicializa con un JSON de _options_ con los siguientes atributos:
 
-- **distance**. Número que indica la cantidad de intervalos o tramos en los que se dividirá el eje y se obtendrán las cotas. (Valor por defecto 30)
-
-- **serviceURL**. URL del servicio sobre el que se consultará un punto XY y devolverá la cota del mismo.
+- **position**. Indica la posición donde se mostrará el plugin.
+  - 'TL':top left
+  - 'TR':top right (default)
+  - 'BL':bottom left
+  - 'BR':bottom right
 
 # Eventos
 
@@ -38,16 +40,4 @@ El constructor se inicializa con un JSON de _options_ con los siguientes atribut
    const mp = new M.plugin.Perfiltopografico();
 
    map.addPlugin(mp);
-```
-### Ejemplo 2
-```javascript
-   const map = M.map({
-     container: 'map'
-   });
-
-   const mp = new M.plugin.Perfiltopografico({
-      distance: 10
-   });
-
-map.addPlugin(mp);
 ```
