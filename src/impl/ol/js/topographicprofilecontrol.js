@@ -14,7 +14,7 @@ export default class TopographicprofileControl extends M.impl.Control {
   constructor(opts) {
 
     super();
-    [this.distancePoinst_, this.mercator_, this.serviceURL, this.coordEPSG4326] = [opts.distance, 'EPSG:900913', opts.serviceURL, "EPSG:4326"];
+    [this.distancePoinst_, this.mercator_, this.serviceURL, this.coordEPSG4326] = [30, 'EPSG:900913', opts.serviceURL, "EPSG:4326"];
     [this.projectionMap_, this.profil_, this.facadeMap_, this.vector_, this.source_, this.vectorProfile_, this.sourceProfile_, this.draw_, this.lineCoord_, this.pointsCoord_, this.dataPoints_, this.pt] = [null, null, null, null, null, null, null, null, null, null, null, null];
     [this.lineString_, this.feature_, this.style_] = [null, null, null];
 
