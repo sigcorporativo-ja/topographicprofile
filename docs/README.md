@@ -1,18 +1,18 @@
-# M.plugin.Perfiltopografico
+# M.plugin.Topographicprofile
 
 Plugin que permite realizar un perfil longitudinal en función del eje que dibujemos en pantalla
 
-![Imagen1](../img/perfiltopografico.png)
+![Imagen1](../img/topographicprofile.png)
 
 # Dependencias
 
-- perfiltopografico.ol.min.js
-- perfiltopografico.ol.min.css
+- topographicprofile.ol.min.js
+- topographicprofile.ol.min.css
 
 
 ```html
- <link href="../../plugins/perfiltopografico/perfiltopografico.ol.min.css" rel="stylesheet" />
- <script type="text/javascript" src="../../plugins/perfiltopografico/perfiltopografico.ol.min.js"></script>
+ <link href="../../plugins/topographicprofile/topographicprofile.ol.min.css" rel="stylesheet" />
+ <script type="text/javascript" src="../../plugins/topographicprofile/topographicprofile.ol.min.js"></script>
 ```
 
 # Parámetros
@@ -25,10 +25,6 @@ El constructor se inicializa con un JSON de _options_ con los siguientes atribut
   - 'BL':bottom left
   - 'BR':bottom right
 
-# Eventos
-
-# Otros métodos
-
 # Ejemplos de uso
 
 ### Ejemplo 1
@@ -37,7 +33,7 @@ El constructor se inicializa con un JSON de _options_ con los siguientes atribut
      container: 'map'
    });
 
-   const mp = new M.plugin.Perfiltopografico();
+   const mp = new M.plugin.Topographicprofile();
 
    map.addPlugin(mp);
 ```
