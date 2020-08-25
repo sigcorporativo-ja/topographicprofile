@@ -2,7 +2,7 @@
 
 Plugin que permite realizar un perfil longitudinal en función del eje que dibujemos en pantalla
 
-![Imagen1](../img/topographicprofile.png)
+![Imagen1](../img/perfiltopografico.png)
 
 # Dependencias
 
