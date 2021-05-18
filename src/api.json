@@ -23,12 +23,13 @@
     "name": "Perfil Topográfico",
     "description": "Genera un perfil longitudinal",
     "text": "A partir de un eje dibujado, el plugin muestra un perfil longitudinal del terreno",
-    "version": "1.0.0",
-    "date": "Junio, 2020",
+    "version": "1.0.1",
+    "date": "Mayo, 2021",
     "author": "",
     "org": "Consejería de Hacienda, Industria y Energía. Junta de Andalucía.",
     "tags": "mapea,plugin",
     "icon": "./facade/assets/icons/icons.svg",
-    "centralized": true
+    "centralized": true,
+    "compatibility": ["5","6"]
   }
 }

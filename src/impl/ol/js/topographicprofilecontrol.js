@@ -179,11 +179,11 @@ export default class TopographicprofileControl extends M.impl.Control {
       for (let i = 1; i < this.lineCoord_.length; i++) {
         this.pointsCoord_ = this.pointsCoord_.concat(this.findNewPoints(this.lineCoord_[i - 1], this.lineCoord_[i]));
       }
-      this.getDataFromGGISCore();
+      this.getDataFromService();
     }.bind(this));
   }
 
-  getDataFromGGISCore() {
+  getDataFromService() {
     if (!this.pointsCoord_) return;
     let pointsBbox = this.pointsCoord_.split('|');
     const altitudes = [];
