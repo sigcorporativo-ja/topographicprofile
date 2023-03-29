@@ -1,21 +1,9 @@
-/*	Copyright (c) 2016 Jean-Marc VIGLINO,
-	released under the CeCILL-B license (French BSD license)
-	(http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt).
+/*    Copyright (c) 2016 Jean-Marc VIGLINO,
+    released under the CeCILL-B license (French BSD license)
+    (http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt).
 */
 /*eslint no-constant-condition: ["error", { "checkLoops": false }]*/
-
-/*import ol_ext_inherits from '../util/ext'
-import { getDistance as ol_sphere_getDistance } from 'ol/sphere'
-import { transform as ol_proj_transform } from 'ol/proj'
-import ol_control_Control from 'ol/control/Control'
-import ol_Feature from 'ol/Feature'*/
-
 import { getValue } from '../../../facade/js/i18n/language';
-
-const inherits = (child, parent) => {
-  child.prototype = Object.create(parent.prototype);
-  child.prototype.constructor = child;
-};
 
 /** Custom infos list
  * @api stable
@@ -33,13 +21,11 @@ const info = {
   "distanceUnitsKM": "km",
 };
 
-
-
 /*eslint-disable*/
 
 /**
  * @classdesc OpenLayers 3 Profil Control.
- *	Draw a profil of a feature (with a 3D geometry)
+ *    Draw a profil of a feature (with a 3D geometry)
  *
  * @constructor
  * @extends {ol_control_Control}
@@ -47,10 +33,9 @@ const info = {
  * @param {Object=} _ol_control_ opt_options.
  *
  */
-var Profil = function(opt_options) {
+var Profil = class olcontrolProfil extends ol.control.Control {
+constructor(opt_options) {
   var options = opt_options || {};
-  this.info = options.info || info;
-  var self = this;
 
   var element;
   if (options.target) {
@@ -102,6 +87,14 @@ var Profil = function(opt_options) {
   div.style.position = "relative";
   div_inner.appendChild(div);
 
+  super({
+    element: element,
+    target: options.target
+  });
+
+  this.info = options.info || info;
+  var self = this;
+
   var ratio = this.ratio = 2;
   this.canvas_ = document.createElement('canvas');
   this.canvas_.width = (options.width || 300) * ratio;
@@ -131,11 +124,6 @@ var Profil = function(opt_options) {
   div_to_canvas.appendChild(this.canvas_);
   div_to_canvas.addEventListener("click", function(e) { self.onMove(e); });
   div_to_canvas.addEventListener("mousemove", function(e) { self.onMove(e); });
-
-  ol.control.Control.call(this, {
-    element: element,
-    target: options.target
-  });
 
   // Offset in px
   this.margin_ = { top: 10 * ratio, left: 40 * ratio, bottom: 30 * ratio, right: 10 * ratio };
@@ -200,19 +188,19 @@ var Profil = function(opt_options) {
     this.setGeometry(options.feature);
   }
 };
-inherits(Profil, ol.control.Control);
+// inherits(Profil, ol.control.Control);
 
 /** Show popup info
  * @param {string} info to display as a popup
  * @api stable
  */
-Profil.prototype.popup = function(info) {
+popup(info) {
   this.popup_.innerHTML = info;
 }
 
 /** Mouse move over canvas
  */
-Profil.prototype.onMove = function(e) {
+onMove(e) {
   if (!this.tab_.length) return;
   var box_canvas = this.canvas_.getBoundingClientRect();
   var pos = {
@@ -262,28 +250,28 @@ Profil.prototype.onMove = function(e) {
 /** Show panel
  * @api stable
  */
-Profil.prototype.show = function() {
+show() {
   this.element.classList.remove("ol-collapsed");
   this.dispatchEvent({ type: 'show', show: true });
 }
 /** Hide panel
  * @api stable
  */
-Profil.prototype.hide = function() {
+hide() {
   this.element.classList.add("ol-collapsed");
   this.dispatchEvent({ type: 'show', show: false });
 }
 /** Toggle panel
  * @api stable
  */
-Profil.prototype.toggle = function() {
+toggle() {
   this.element.classList.toggle("ol-collapsed");
   var b = this.element.classList.contains("ol-collapsed");
   this.dispatchEvent({ type: 'show', show: !b });
 }
 /** Is panel visible
  */
-Profil.prototype.isShown = function() {
+isShown() {
   return (!this.element.classList.contains("ol-collapsed"));
 }
 
@@ -291,16 +279,16 @@ Profil.prototype.isShown = function() {
  * Set the geometry to draw the profil.
  * @param {ol.Feature|ol.geom} f the feature.
  * @param {Object=} options
- *		- projection {ol.ProjectionLike} feature projection, default projection of the map
- *		- zunit {m|km} default m
- *		- unit {m|km} default km
- *		- zmin {Number|undefined} default 0
- *		- zmax {Number|undefined} default max Z of the feature
- *		- graduation {Number|undefined} z graduation default 100
- *		- amplitude {integer|undefined} amplitude of the altitude, default zmax-zmin
+ *        - projection {ol.ProjectionLike} feature projection, default projection of the map
+ *        - zunit {m|km} default m
+ *        - unit {m|km} default km
+ *        - zmin {Number|undefined} default 0
+ *        - zmax {Number|undefined} default max Z of the feature
+ *        - graduation {Number|undefined} z graduation default 100
+ *        - amplitude {integer|undefined} amplitude of the altitude, default zmax-zmin
  * @api stable
  */
-Profil.prototype.setGeometry = function(g, options) {
+setGeometry(g, options) {
   if (!options) options = {};
   if (g instanceof ol.Feature) g = g.getGeometry();
   var canvas = this.canvas_;
@@ -488,9 +476,9 @@ Profil.prototype.setGeometry = function(g, options) {
  * @return {string} requested data uri
  * @api stable
  */
-Profil.prototype.getImage = function(type, encoderOptions) {
+getImage(type, encoderOptions) {
   if (type === "canvas") return this.canvas_;
   return this.canvas_.toDataURL(type, encoderOptions);
 }
-
+}
 export default Profil

@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="mapea" content="yes">
     <title>Topographicprofile Production TEST</title>
-    <link href="https://mapea4-sigc.juntadeandalucia.es/mapea/assets/css/mapea-6.0.0.ol.min.css" rel="stylesheet" />
+    <link href="https://mapea4-sigc.juntadeandalucia.es/mapea/assets/css/mapea-6.3.1.ol.min.css" rel="stylesheet" />
     <link href="../dist/topographicprofile.ol.min.css" rel="stylesheet" />
     <style rel="stylesheet">
         html,
@@ -23,15 +23,43 @@
 
 <body>
     <div id="mapjs" class="container"></div>
-    <script type="text/javascript" src="https://mapea4-sigc.juntadeandalucia.es/mapea/js/mapea-6.0.0.ol.min.js"></script>
-    <script type="text/javascript" src="https://mapea4-sigc.juntadeandalucia.es/mapea/js/configuration-6.0.0.js"></script>
+    <script type="text/javascript" src="https://mapea4-sigc.juntadeandalucia.es/mapea/js/mapea-6.3.1.ol.min.js"></script>
+    <script type="text/javascript" src="https://mapea4-sigc.juntadeandalucia.es/mapea/js/configuration-6.3.1.js"></script>
     <script type="text/javascript" src="../dist/topographicprofile.ol.min.js"></script>
     <script type="text/javascript">
         const map = M.map({
             container: 'mapjs',
+            center: [261137,4214200],
+            zoom: 10
         });
-        const mp = new M.plugin.Topographicprofile();
-        map.addPlugin(mp);
+
+        let layer = new M.layer.GeoJSON(
+        {
+            name: "Provincias", 
+            url: "https://hcsigc.int.i-administracion.junta-andalucia.es/mapea/files/kml/1.geojson",
+                extract: false
+        });
+
+        let estiloCapa = new M.style.Generic({
+            line: {
+                fill: {
+                    color: 'red',
+                    width: 2
+                }
+            }
+        });
+        
+        layer.setStyle(estiloCapa);
+
+        layer.on(M.evt.LOAD, () => {
+            const mp = new M.plugin.Topographicprofile({
+                mode: 'fixed',
+                layer: layer,
+            });
+            map.addPlugin(mp);
+        });
+
+        map.addLayers(layer);
     </script>
 </body>
 

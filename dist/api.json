@@ -6,12 +6,27 @@
   "constructor": "M.plugin.Topographicprofile",
   "parameters": [{
     "type": "object",
-    "properties": [{
+    "properties": [
+    {
       "type": "simple",
-      "name": "position",
-      "possibleValues": ["TL", "TR", "BL", "BR"],
+      "name": "mode",
+      "possibleValues": [
+        "interactive",
+        "fixed"
+      ],
       "position": 0
-    }]
+    },
+    {
+      "type": "boolean",
+      "name": "forcews",
+      "position": 1
+    },
+    {
+      "type": "simple",
+      "name": "layer",
+      "position": 2
+    }
+  ]
   }],
   "files": {
     "ol": {
@@ -22,14 +37,14 @@
   "metadata": {
     "name": "Perfil Topográfico",
     "description": "Genera un perfil longitudinal",
-    "text": "A partir de un eje dibujado, el plugin muestra un perfil longitudinal del terreno",
-    "version": "1.0.1",
-    "date": "Mayo, 2021",
+    "text": "Muestra un perfil longitudinal del terreno a partir de un dibujado, o desde las coordnadas de la capa si tienen altura",
+    "version": "2.0.0",
+    "date": "Marzo, 2023",
     "author": "",
-    "org": "Consejería de Hacienda, Industria y Energía. Junta de Andalucía.",
+    "org": "ADA. Junta de Andalucía.",
     "tags": "mapea,plugin",
     "icon": "./facade/assets/icons/icons.svg",
     "centralized": true,
-    "compatibility": ["5","6"]
+    "compatibility": ["6"]
   }
 }
