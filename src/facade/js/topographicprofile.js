@@ -47,13 +47,12 @@ export default class Topographicprofile extends M.Plugin {
      * @type {Object}
      */
     this.metadata_ = api.metadata;
-
-
-
     this.facadeMap_ = null;
     this.panel_ = null;
     this.control_ = null;
     this.options_ = opts;
+    this.layer_ = opts.layer;
+    this.mode_ =(opts.mode? opts.mode : 'interactive');
   }
 
   /**
@@ -76,6 +75,9 @@ export default class Topographicprofile extends M.Plugin {
       'tooltip': getValue('tooltip')
     });
     this.panel_.addControls(this.controls_);
+    this.panel_.on(M.evt.ADDED_TO_MAP, () => {
+      this.fire(M.evt.ADDED_TO_MAP);
+    });
     map.addPanels(this.panel_);
   }
 
